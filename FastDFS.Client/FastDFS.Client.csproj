@@ -1,99 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{27718A9C-7092-4310-993D-2876D5432F9C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FastDFS.Client</RootNamespace>
-    <AssemblyName>FastDFS.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>2.0.2</Version>
+    <Description>基于1.0版本，重构连接管理，解决多线程并发性能问题</Description>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>E:\SVN\DPC\Code\Public\01Git\FastDFS.Client\trunk\FastDFS.Client\FastDFS.Client\FastDFS.Client.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Compile Remove="Config\FastDfsConfigurationSectionHandler.cs" />
+    <Compile Remove="Config\FastDfsManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Common\Connection.cs" />
-    <Compile Include="Common\FDFSConfig.cs" />
-    <Compile Include="ConnectionManager.cs" />
-    <Compile Include="Common\Consts.cs" />
-    <Compile Include="Common\FDFSException.cs" />
-    <Compile Include="Common\FDFSHeader.cs" />
-    <Compile Include="Common\Pool.cs" />
-    <Compile Include="Common\StorageNode.cs" />
-    <Compile Include="Config\FastDfsConfig.cs" />
-    <Compile Include="Config\FastDfsConfigurationSectionHandler.cs" />
-    <Compile Include="Config\FastDfsManager.cs" />
-    <Compile Include="Config\FastDfsServer.cs" />
-    <Compile Include="FastDFSClient.cs" />
-    <Compile Include="Storage\APPEND_FILE.cs" />
-    <Compile Include="Storage\DELETE_FILE.cs" />
-    <Compile Include="Storage\DOWNLOAD_FILE.cs" />
-    <Compile Include="Storage\FDFSFileInfo.cs" />
-    <Compile Include="Storage\GET_METADATA.cs" />
-    <Compile Include="Storage\QUERY_FILE_INFO.cs" />
-    <Compile Include="Storage\SET_METADATA.cs" />
-    <Compile Include="Storage\UPLOAD_APPEND_FILE.cs" />
-    <Compile Include="Storage\UPLOAD_FILE.cs" />
-    <Compile Include="Storage\UPLOAD_SLAVE_FILE.cs" />
-    <Compile Include="Tracker\LIST_ALL_GROUPS.cs" />
-    <Compile Include="Tracker\LIST_ONE_GROUP.cs" />
-    <Compile Include="Tracker\LIST_STORAGE.cs" />
-    <Compile Include="Tracker\QUERY_FETCH_ALL.cs" />
-    <Compile Include="Tracker\QUERY_FETCH_ONE.cs" />
-    <Compile Include="Tracker\QUERY_STORE_WITHOUT_GROUP_ALL.cs" />
-    <Compile Include="Tracker\QUERY_STORE_WITHOUT_GROUP_ONE.cs" />
-    <Compile Include="Tracker\QUERY_STORE_WITH_GROUP_ALL.cs" />
-    <Compile Include="Tracker\QUERY_STORE_WITH_GROUP_ONE.cs" />
-    <Compile Include="Tracker\QUERY_UPDATE.cs" />
-    <Compile Include="Common\FDFSRequest.cs" />
-    <Compile Include="Common\Util.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

@@ -3,6 +3,9 @@ using System.Security.Cryptography;
 
 namespace FastDFS.Client.Common
 {
+    /// <summary>
+    /// 工具类
+    /// </summary>
     public class Util
     {
         /// <summary>
@@ -42,6 +45,11 @@ namespace FastDFS.Client.Common
                    ((buffer[offset + 7] >= 0 ? buffer[offset + 7] : 256 + buffer[offset + 7]));
         }
 
+        /// <summary>
+        /// byte to string
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string ByteToString(byte[] input)
         {
             char[] chars = FDFSConfig.Charset.GetChars(input);
@@ -49,6 +57,11 @@ namespace FastDFS.Client.Common
             return result;
         }
 
+        /// <summary>
+        /// string to byte
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static byte[] StringToByte(string input)
         {
             return FDFSConfig.Charset.GetBytes(input);

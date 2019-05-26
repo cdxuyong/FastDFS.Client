@@ -21,20 +21,6 @@ namespace FastDFS.Client.Tracker
     /// </summary>
     public class QUERY_STORE_WITH_GROUP_ONE : FDFSRequest
     {
-        #region 单例对象
-        
-        private static readonly QUERY_STORE_WITH_GROUP_ONE _instance = new QUERY_STORE_WITH_GROUP_ONE();
-
-        public static QUERY_STORE_WITH_GROUP_ONE Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
-        #endregion
-
         /// <summary>
         /// 
         /// </summary>
@@ -42,7 +28,7 @@ namespace FastDFS.Client.Tracker
         /// 1,string groupName-->the storage groupName
         /// </param>
         /// <returns></returns>
-        public override FDFSRequest GetRequest(params object[] paramList)
+        public static FDFSRequest CreateRequest(params object[] paramList)
         {
             if (paramList.Length == 0)
                 throw new FDFSException("GroupName is null");

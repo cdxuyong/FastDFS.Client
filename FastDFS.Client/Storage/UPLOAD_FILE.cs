@@ -23,16 +23,16 @@ namespace FastDFS.Client.Storage
     /// </summary>
     public class UPLOAD_FILE : FDFSRequest
     {
-        private static readonly UPLOAD_FILE _instance = new UPLOAD_FILE();
+        //private static readonly UPLOAD_FILE _instance = new UPLOAD_FILE();
 
-        private UPLOAD_FILE()
+        public UPLOAD_FILE()
         {
         }
 
-        public static UPLOAD_FILE Instance
-        {
-            get { return _instance; }
-        }
+        //public static UPLOAD_FILE Instance
+        //{
+        //    get { return _instance; }
+        //}
 
         /// <summary>
         /// </summary>
@@ -44,7 +44,7 @@ namespace FastDFS.Client.Storage
         ///     5,byte[FileSize]    File Content
         /// </param>
         /// <returns></returns>
-        public override FDFSRequest GetRequest(params object[] paramList)
+        public static FDFSRequest CreateRequest(params object[] paramList)
         {
             if (paramList.Length != 5)
                 throw new FDFSException("param count is wrong");
@@ -71,7 +71,7 @@ namespace FastDFS.Client.Storage
 
             var result = new UPLOAD_FILE
             {
-                Connection = ConnectionManager.GetStorageConnection(endPoint)
+                StorageConnection = ConnectionManager.GetStorageConnection(endPoint)
             };
 
             if (ext.Length > Consts.FDFS_FILE_EXT_NAME_MAX_LEN)

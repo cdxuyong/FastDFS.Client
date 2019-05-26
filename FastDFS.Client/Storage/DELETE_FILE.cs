@@ -18,15 +18,8 @@ namespace FastDFS.Client.Storage
     /// </summary>
     public class DELETE_FILE : FDFSRequest
     {
-        private static readonly DELETE_FILE _instance = new DELETE_FILE();
-
-        private DELETE_FILE()
+        public DELETE_FILE()
         {
-        }
-
-        public static DELETE_FILE Instance
-        {
-            get { return _instance; }
         }
 
         /// <summary>
@@ -37,7 +30,7 @@ namespace FastDFS.Client.Storage
         ///     3,string fileName
         /// </param>
         /// <returns></returns>
-        public override FDFSRequest GetRequest(params object[] paramList)
+        public static FDFSRequest CreateRequest(params object[] paramList)
         {
             if (paramList.Length != 3)
                 throw new FDFSException("param count is wrong");
@@ -47,7 +40,7 @@ namespace FastDFS.Client.Storage
             var groupName = (string)paramList[1];
             var fileName = (string)paramList[2];
 
-            var result = new DELETE_FILE { Connection = ConnectionManager.GetStorageConnection(endPoint) };
+            var result = new DELETE_FILE { StorageConnection = ConnectionManager.GetStorageConnection(endPoint) };
 
             if (groupName.Length > Consts.FDFS_GROUP_NAME_MAX_LEN)
                 throw new FDFSException("groupName is too long");
@@ -67,8 +60,9 @@ namespace FastDFS.Client.Storage
 
         public class Response
         {
-            public Response(byte[] responseBody)
+            public Response(byte[] responseByte)
             {
+                 
             }
         }
     }

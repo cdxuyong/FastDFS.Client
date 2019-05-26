@@ -72,7 +72,7 @@ namespace FastDFS.Client.Storage
 
             #endregion
 
-            var result = new UPLOAD_SLAVE_FILE { Connection = ConnectionManager.GetStorageConnection(endPoint) };
+            var result = new UPLOAD_SLAVE_FILE { StorageConnection = ConnectionManager.GetStorageConnection(endPoint) };
             if (ext.Length > Consts.FDFS_FILE_EXT_NAME_MAX_LEN)
                 throw new FDFSException("file ext is too long");
 

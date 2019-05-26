@@ -52,7 +52,7 @@ namespace FastDFS.Client.Storage
             var fileName = (string)paramList[1];
             var contentBuffer = (byte[])paramList[2];
 
-            var result = new APPEND_FILE { Connection = ConnectionManager.GetStorageConnection(endPoint) };
+            var result = new APPEND_FILE { StorageConnection = ConnectionManager.GetStorageConnection(endPoint) };
 
             long length = Consts.FDFS_PROTO_PKG_LEN_SIZE + Consts.FDFS_PROTO_PKG_LEN_SIZE + fileName.Length +
                           contentBuffer.Length;

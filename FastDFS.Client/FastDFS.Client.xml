@@ -1,0 +1,931 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FastDFS.Client</name>
+    </assembly>
+    <members>
+        <member name="T:FastDFS.Client.Common.Connection">
+            <summary>
+            tcp client connection
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Connection.#ctor">
+            <summary>
+            conncetion
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Connection.SessionId">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Connection.Pool">
+            <summary>
+            <seealso cref="P:FastDFS.Client.Common.Connection.Pool"/>
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Connection.CreateTime">
+            <summary>
+            create time
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Connection.LastUseTime">
+            <summary>
+            last use time of connection
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Connection.InUse">
+            <summary>
+            is used
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.Connection.CountOfUsed">
+            <summary>
+            count of used
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Connection.OpenConnection">
+            <summary>
+            打开连接
+            <url>https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.socket.connected?view=netframework-4.7.2</url>
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Connection.IsConnect">
+            <summary>
+            is connect of tcpclient
+            “调用非阻止性、 零字节发送”确认连接是否有效
+            </summary>
+            <url>https://docs.microsoft.com/zh-cn/dotnet/api/system.net.sockets.socket.connected?view=netframework-4.7.2</url>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Connection.CloseConnection">
+            <summary>
+            close conn
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Connection.ReleaseConnection">
+            <summary>
+            release conn
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Common.FDFSConfig">
+            <summary>
+            fastDfs配置
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.FDFSConfig.StorageMaxConnection">
+            <summary>
+            存储连接数量
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.FDFSConfig.TrackerMaxConnection">
+            <summary>
+            max count of Tracker  Conn
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.FDFSConfig.ConnectionTimeout">
+            <summary>
+            连接超时
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.FDFSConfig.ConnectionLifeTime">
+            <summary>
+            连接会话生命时间/秒
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.FDFSConfig.Charset">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSHeader.#ctor(System.Int64,System.Byte,System.Byte)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="length"></param>
+            <param name="command"></param>
+            <param name="status"></param>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSHeader.Length">
+            <summary>
+                Pachage Length
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSHeader.Command">
+            <summary>
+                Command
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSHeader.Status">
+            <summary>
+                Status
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Common.FDFSRequest">
+            <summary>
+            FastDFS请求
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSRequest.Header">
+            <summary>
+            header
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSRequest.Body">
+            <summary>
+            body
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSRequest.Connection">
+            <summary>
+            tracker connection
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSRequest.StorageConnection">
+            <summary>
+            storage connection
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.FDFSRequest.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.FDFSRequest.MAX_TRY_COUNT">
+            <summary>
+            最大尝试次数
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.ToByteArray">
+            <summary>
+            转化成Byte
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.GetRequest(System.Object[])">
+            <summary>
+            获取请求
+            </summary>
+            <param name="paramList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.GetTrackerResponse">
+            <summary>
+            读取tracker响应
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.GetStorageResponse">
+            <summary>
+            获取存储节点响应
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.GetStorageResponseAsync">
+            <summary>
+            异步获取存储节点信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.GetResponse(FastDFS.Client.Common.Connection)">
+            <summary>
+            获取响应
+            </summary>
+            <param name="connection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.Dispose(System.Boolean)">
+            <summary>
+            释放资源
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:FastDFS.Client.Common.FDFSRequest.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Common.Pool">
+            <summary>
+            connect pool
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Pool.EnablePool">
+            <summary>
+            enable
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Pool.DisableTime">
+            <summary>
+            disable time
+            </summary>
+        </member>
+        <member name="P:FastDFS.Client.Common.Pool.IpEndPoint">
+            <summary>
+            ip of end point
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.#ctor(System.Net.IPEndPoint,System.Int32,System.String)">
+            <summary>
+            连接池
+            </summary>
+            <param name="endPoint"></param>
+            <param name="maxConnection"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.Disable">
+            <summary>
+            禁用连接池
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.Enable">
+            <summary>
+            启用连接池
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.GetPooldConncetion">
+            <summary>
+            get conn
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.GetConnection2">
+            <summary>
+            get conn
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.GetConnection">
+            <summary>
+            获取连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.GetConnectionInPool">
+            <summary>
+            随机获取空闲连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.ReleaseConnection(FastDFS.Client.Common.Connection)">
+            <summary>
+            release conn
+            </summary>
+            <param name="conn"></param>
+        </member>
+        <member name="M:FastDFS.Client.Common.Pool.CloseConnection(FastDFS.Client.Common.Connection)">
+            <summary>
+            close conn
+            </summary>
+            <param name="conn"></param>
+        </member>
+        <member name="T:FastDFS.Client.Common.StorageNode">
+            <summary>
+            storage node 
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.StorageNode.GroupName">
+            <summary>
+            group name
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.StorageNode.EndPoint">
+            <summary>
+            end point
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.Common.StorageNode.StorePathIndex">
+            <summary>
+            index
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Common.Util">
+            <summary>
+            工具类
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Common.Util.LongToBuffer(System.Int64)">
+            <summary>
+                Convert Long to byte[]
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Util.BufferToLong(System.Byte[],System.Int32)">
+            <summary>
+                Convert byte[] to Long
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Util.ByteToString(System.Byte[])">
+            <summary>
+            byte to string
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Util.StringToByte(System.String)">
+            <summary>
+            string to byte
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Util.GetToken(System.String,System.Int32,System.String)">
+            <summary>
+                get token for file URL
+            </summary>
+            <param name="fileId">file_id the file id return by FastDFS server</param>
+            <param name="ts">ts unix timestamp, unit: second</param>
+            <param name="secretKey">secret_key the secret key</param>
+            <returns>token string</returns>
+        </member>
+        <member name="M:FastDFS.Client.Common.Util.Md5(System.Byte[])">
+            <summary>
+                md5 function
+            </summary>
+            <param name="source">source the input buffer </param>
+            <returns>md5 string </returns>
+        </member>
+        <member name="T:FastDFS.Client.ConnectionManager">
+            <summary>
+            链接管理池
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.ConnectionManager.TrackerPools">
+            <summary>
+            trackers 
+            </summary>
+        </member>
+        <member name="F:FastDFS.Client.ConnectionManager.StorePools">
+            <summary>
+            storages
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.ConnectionManager.Initialize(System.Collections.Generic.List{System.Net.IPEndPoint})">
+            <summary>
+            初始化连接管理
+            </summary>
+            <param name="trackers">trackers</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.ConnectionManager.InitializeForConfigSection(FastDFS.Client.Config.FastDfsConfig)">
+            <summary>
+            通过配置文件初始化
+            </summary>
+            <param name="config">配置信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.ConnectionManager.GetTrackerConnection">
+            <summary>
+            获取tracker连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.ConnectionManager.GetStorageConnection(System.Net.IPEndPoint)">
+            <summary>
+            获取存储连接
+            </summary>
+            <param name="endPoint"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.FastDFSClient">
+            <summary>
+            FastDFSClient
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.GetStorageNode(System.String)">
+            <summary>
+            获取存储节点
+            </summary>
+            <param name="groupName">组名，如果没有组名由服务器自动分配</param>
+            <returns>存储节点实体类</returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.UploadFile(FastDFS.Client.Common.StorageNode,System.Byte[],System.String)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="storageNode">GetStorageNode方法返回的存储节点</param>
+            <param name="contentByte">文件内容</param>
+            <param name="fileExt">文件扩展名(注意:不包含".")</param>
+            <returns>文件名</returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.UploadSlaveFile(System.String,System.Byte[],System.String,System.String,System.String)">
+            <summary>
+            上传从文件
+            </summary>
+            <param name="groupName"></param>
+            <param name="contentByte">文件内容</param>
+            <param name="masterFilename">主文件名</param>
+            <param name="prefixName">从文件后缀</param>
+            <param name="fileExt">文件扩展名(注意:不包含".")</param>
+            <returns>文件名</returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.GetFileName(System.String,System.String)">
+            <summary>
+            获取文件名称
+            </summary>
+            <param name="groupName"></param>
+            <param name="groupFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.UploadAppenderFile(FastDFS.Client.Common.StorageNode,System.Byte[],System.String)">
+            <summary>
+            上传可以Append的文件
+            </summary>
+            <param name="storageNode">GetStorageNode方法返回的存储节点</param>
+            <param name="contentByte">文件内容</param>
+            <param name="fileExt">文件扩展名(注意:不包含".")</param>
+            <returns>文件名</returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.AppendFile(System.String,System.String,System.Byte[])">
+            <summary>
+            附加文件
+            </summary>
+            <param name="groupName">组名</param>
+            <param name="fileName">文件名</param>
+            <param name="contentByte">文件内容</param>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.RemoveFile(System.String,System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="groupName">组名</param>
+            <param name="fileName">文件名</param>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.DownloadFile(FastDFS.Client.Common.StorageNode,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="storageNode">GetStorageNode方法返回的存储节点</param>
+            <param name="fileName">文件名</param>
+            <exception cref="T:System.Exception">读取网络资源异常</exception>
+            <returns>文件内容</returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.DownloadFileAsync(FastDFS.Client.Common.StorageNode,System.String)">
+            <summary>
+            异步下载
+            </summary>
+            <param name="storageNode"></param>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.DownloadFile(FastDFS.Client.Common.StorageNode,System.String,System.Int64,System.Int64)">
+            <summary>
+            增量下载文件
+            </summary>
+            <param name="storageNode">GetStorageNode方法返回的存储节点</param>
+            <param name="fileName">文件名</param>
+            <param name="offset">从文件起始点的偏移量</param>
+            <param name="length">要读取的字节数</param>
+            <returns>文件内容</returns>
+        </member>
+        <member name="M:FastDFS.Client.FastDFSClient.GetFileInfo(FastDFS.Client.Common.StorageNode,System.String)">
+            <summary>
+            获取文件信息
+            </summary>
+            <param name="storageNode">GetStorageNode方法返回的存储节点</param>
+            <param name="fileName">文件名</param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Storage.APPEND_FILE">
+            <summary>
+                append file to storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_APPEND_FILE 24
+                Body:
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file name length
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: append file body length
+                @ file name
+                @ append body
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Storage.APPEND_FILE.GetRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,IPEndPoint    IPEndPoint-->the storage IPEndPoint
+                2,string        FileName
+                3,byte[]        File bytes
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Storage.DELETE_FILE">
+            <summary>
+                delete file from storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_DELETE_FILE 12
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Storage.DELETE_FILE.CreateRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,IPEndPoint    IPEndPoint-->the storage IPEndPoint
+                2,string groupName
+                3,string fileName
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Storage.DOWNLOAD_FILE">
+            <summary>
+                download/fetch file from storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_DOWNLOAD_FILE 14
+                Body:
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file offset
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: download file bytes
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ file content
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Storage.DOWNLOAD_FILE.CreateRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,IPEndPoint    IPEndPoint-->the storage IPEndPoint
+                2,long offset-->file offset
+                3,long byteSize -->download file bytes
+                4,string groupName
+                5,string fileName
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:FastDFS.Client.Storage.DOWNLOAD_FILE.GetStorageResponse">
+            <summary>
+            获取存储节点的响应
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Storage.GET_METADATA">
+            <summary>
+                get metat data from storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_GET_METADATA 15
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ meta data buff, each meta data seperated by \x01, name and value seperated by \x02
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Storage.QUERY_FILE_INFO">
+            <summary>
+                query file info from storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_QUERY_FILE_INFO 22
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file size
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file create timestamp
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file CRC32 signature
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Storage.QUERY_FILE_INFO.CreateRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,IPEndPoint    IPEndPoint-->the storage IPEndPoint
+                2,string fileName
+                3,string fileBytes
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Storage.SET_METADATA">
+            <summary>
+                set metat data from storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_SET_METADATA 13
+                Body:
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: filename length
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: meta data size
+                @ 1 bytes: operation flag,
+                'O' for overwrite all old metadata
+                'M' for merge, insert when the meta item not exist, otherwise update it
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+                @ meta data bytes: each meta data seperated by \x01,
+                name and value seperated by \x02
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Storage.UPLOAD_APPEND_FILE">
+            <summary>
+                upload file to storage server
+                Reqeust
+                Cmd: UPLOAD_APPEND_FILE 23
+                Body:
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: filename size
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file bytes size
+                @ filename
+                @ file bytes: file content
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Storage.UPLOAD_APPEND_FILE.GetRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,IPEndPoint    IPEndPoint-->the storage IPEndPoint
+                2,Byte          StorePathIndex
+                3,long          FileSize
+                4,string        File Ext
+                5,byte[FileSize]    File Content
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Storage.UPLOAD_FILE">
+            <summary>
+                upload file to storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_UPLOAD_FILE 11
+                Body:
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: filename size
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file bytes size
+                @ filename
+                @ file bytes: file content
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Storage.UPLOAD_FILE.CreateRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,IPEndPoint    IPEndPoint-->the storage IPEndPoint
+                2,Byte          StorePathIndex
+                3,long          FileSize
+                4,string        File Ext
+                5,byte[FileSize]    File Content
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Storage.UPLOAD_SLAVE_FILE">
+            <summary>
+                upload slave file to storage server
+                Reqeust
+                Cmd: STORAGE_PROTO_CMD_UPLOAD_SLAVE_FILE 21
+                Body:
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: master filename length
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: file size
+                @ FDFS_FILE_PREFIX_MAX_LEN bytes: filename prefix
+                @ FDFS_FILE_EXT_NAME_MAX_LEN bytes: file ext name, do not include dot (.)
+                @ master filename bytes: master filename
+                @ file size bytes: file content
+                Response
+                Cmd: STORAGE_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Storage.UPLOAD_SLAVE_FILE.GetRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,IPEndPoint    IPEndPoint-->the storage IPEndPoint
+                2,Byte          StorePathIndex
+                3,long          FileSize
+                4,string        File Ext
+                5,byte[FileSize]    File Content
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.LIST_ALL_GROUPS">
+            <summary>
+            list all groups
+            
+            Reqeust 
+                Cmd: TRACKER_PROTO_CMD_SERVER_LIST_ALL_GROUPS 91
+                Body:
+                
+            Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN+1 bytes: group name
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: free disk storage in MB
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server count
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server http port
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: active server count
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: current write server index
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: store path count on storage server
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: subdir count per path on storage server
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.LIST_ONE_GROUP">
+            <summary>
+            list one groups
+            
+            Reqeust 
+                Cmd: TRACKER_PROTO_CMD_SERVER_LIST_ONE_GROUP 90
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: the group name to query
+            Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN+1 bytes: group name
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: free disk storage in MB
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server count
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server http port
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: active server count
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: current write server index
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: store path count on storage server
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: subdir count per path on storage server
+            </summary>
+        </member>
+        <!-- 对于成员“T:FastDFS.Client.Tracker.LIST_STORAGE”忽略有格式错误的 XML 注释 -->
+        <member name="T:FastDFS.Client.Tracker.QUERY_FETCH_ALL">
+            <summary>
+            query all storage servers to download the file
+            
+            Reqeust 
+                Cmd: TRACKER_PROTO_CMD_SERVICE_QUERY_FETCH_ALL 105
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+            Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ IP_ADDRESS_SIZE - 1 bytes:  storage server ip address (multi)
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port (multi)
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.QUERY_FETCH_ONE">
+            <summary>
+                query which storage server to download the file
+                Reqeust
+                Cmd: TRACKER_PROTO_CMD_SERVICE_QUERY_FETCH_ONE 102
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ filename bytes: filename
+                Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ IP_ADDRESS_SIZE - 1 bytes:  storage server ip address
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Tracker.QUERY_FETCH_ONE.GetRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,string groupName
+                2,string fileName
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.QUERY_STORE_WITHOUT_GROUP_ALL">
+            <summary>
+            query which storage server to store file
+            
+            Reqeust 
+                Cmd: TRACKER_PROTO_CMD_SERVICE_QUERY_STORE_WITHOUT_GROUP_ALL 106
+                Body: 
+                
+            Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ IP_ADDRESS_SIZE - 1 bytes: storage server ip address (multi)
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port (multi)
+                @ 1 byte: store path index on the storage server
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.QUERY_STORE_WITHOUT_GROUP_ONE">
+            <summary>
+            query which storage server to store file
+            
+            Reqeust 
+                Cmd: TRACKER_PROTO_CMD_SERVICE_QUERY_STORE_WITHOUT_GROUP_ONE 101
+                Body: 
+                
+            Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ IP_ADDRESS_SIZE - 1 bytes: storage server ip address
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port
+                @ 1 byte: store path index on the storage server
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.QUERY_STORE_WITH_GROUP_ALL">
+            <summary>
+            query which storage server to store file
+            
+            Reqeust 
+                Cmd: TRACKER_PROTO_CMD_SERVICE_QUERY_STORE_WITH_GROUP_ALL 107
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+            Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ IP_ADDRESS_SIZE - 1 bytes: storage server ip address
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port
+                @ 1 byte: store path index on the storage server
+            </summary>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.QUERY_STORE_WITH_GROUP_ONE">
+            <summary>
+            query which storage server to store file
+            
+            Reqeust 
+                Cmd: TRACKER_PROTO_CMD_SERVICE_QUERY_STORE_WITH_GROUP_ONE 104
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+            Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body: 
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ IP_ADDRESS_SIZE - 1 bytes: storage server ip address
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port
+                @ 1 byte: store path index on the storage server
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Tracker.QUERY_STORE_WITH_GROUP_ONE.CreateRequest(System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="paramList">
+            1,string groupName-->the storage groupName
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:FastDFS.Client.Tracker.QUERY_UPDATE">
+            <summary>
+                query which storage server to update the file
+                Reqeust
+                Cmd: TRACKER_PROTO_CMD_SERVICE_QUERY_UPDATE 103
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes:  group name
+                @ filename bytes: filename
+                Response
+                Cmd: TRACKER_PROTO_CMD_RESP
+                Status: 0 right other wrong
+                Body:
+                @ FDFS_GROUP_NAME_MAX_LEN bytes: group name
+                @ IP_ADDRESS_SIZE - 1 bytes: storage server ip address
+                @ FDFS_PROTO_PKG_LEN_SIZE bytes: storage server port
+            </summary>
+        </member>
+        <member name="M:FastDFS.Client.Tracker.QUERY_UPDATE.CreateRequest(System.Object[])">
+            <summary>
+            </summary>
+            <param name="paramList">
+                1,string groupName
+                2,string fileName
+            </param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

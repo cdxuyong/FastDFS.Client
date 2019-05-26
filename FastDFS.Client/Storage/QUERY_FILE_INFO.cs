@@ -21,16 +21,10 @@ namespace FastDFS.Client.Storage
     /// </summary>
     public class QUERY_FILE_INFO : FDFSRequest
     {
-        private static readonly QUERY_FILE_INFO _instance = new QUERY_FILE_INFO();
-
-        private QUERY_FILE_INFO()
+        public QUERY_FILE_INFO()
         {
         }
 
-        public static QUERY_FILE_INFO Instance
-        {
-            get { return _instance; }
-        }
 
         /// <summary>
         /// </summary>
@@ -40,7 +34,7 @@ namespace FastDFS.Client.Storage
         ///     3,string fileBytes
         /// </param>
         /// <returns></returns>
-        public override FDFSRequest GetRequest(params object[] paramList)
+        public static FDFSRequest CreateRequest(params object[] paramList)
         {
             if (paramList.Length != 3)
                 throw new FDFSException("param count is wrong");
@@ -50,7 +44,7 @@ namespace FastDFS.Client.Storage
             var fileName = (string) paramList[2];
 
             var result = new QUERY_FILE_INFO();
-            result.Connection = ConnectionManager.GetStorageConnection(endPoint);
+            result.StorageConnection = ConnectionManager.GetStorageConnection(endPoint);
 
             if (groupName.Length > Consts.FDFS_GROUP_NAME_MAX_LEN)
                 throw new FDFSException("groupName is too long");

@@ -20,15 +20,9 @@ namespace FastDFS.Client.Tracker
     /// </summary>
     public class QUERY_UPDATE : FDFSRequest
     {
-        private static readonly QUERY_UPDATE _instance = new QUERY_UPDATE();
 
-        private QUERY_UPDATE()
+        public QUERY_UPDATE()
         {
-        }
-
-        public static QUERY_UPDATE Instance
-        {
-            get { return _instance; }
         }
 
         /// <summary>
@@ -38,7 +32,7 @@ namespace FastDFS.Client.Tracker
         ///     2,string fileName
         /// </param>
         /// <returns></returns>
-        public override FDFSRequest GetRequest(params object[] paramList)
+        public static FDFSRequest CreateRequest(params object[] paramList)
         {
             if (paramList.Length != 2)
                 throw new FDFSException("param count is wrong");
