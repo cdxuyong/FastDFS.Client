@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using FastDFS.Client.Common;
@@ -99,48 +100,52 @@ namespace FastDFS.Client.Storage
             }
             try
             {
-                body = ReadStreamOnebyOne();
+                body = ReadNetStream();
             }
             catch(Exception ex)
             {
                 Message = ex.Message;
                 Console.WriteLine($"GetStorageResponse.ReadStream => {ex.Message}");
+                StorageConnection.CloseConnection();
             }
             return body;
         }
 
-        // 逐个读取字节流
-        private byte[] ReadStreamOnebyOne()
+        // 网络流中读取字节码，当前stream不能关闭
+        private byte[] ReadNetStream()
         {
             var stream = StorageConnection.GetStream();
             var headerBuffer = Header.ToByte();
             stream.Write(headerBuffer, 0, headerBuffer.Length);
             stream.Write(Body, 0, Body.Length);
-
             var header = new FDFSHeader(stream);
             if (header.Status != 0)
                 throw new FDFSException(string.Format("Get Response Error,Error Code:{0}", header.Status));
 
-            var body = new byte[header.Length];
-            int i = 0;
+            long remind = header.Length;
+            byte[] body = null;
             if (stream.CanRead)
             {
-                do
+                using (MemoryStream outStream = new MemoryStream())
                 {
-                    int byteData = stream.ReadByte();
-                    body[i] = (byte)byteData;
-                    i++;
+                    do
+                    {
+                        byte[] buff = new byte[256 * 1024];
+                        var index = stream.Read(buff, 0, buff.Length);
+                        outStream.Write(buff, 0, index);
+                        remind = remind - index;
+                    }
+                    while (remind > 0);
+                    body = outStream.ToArray();
                 }
-                while (stream.DataAvailable);
+     
             }
-            if (header.Length == i)
-            {
-                return body;
-            }
-            else
-                return null;
+            return body;
         }
 
+        /// <summary>
+        /// 响应内容
+        /// </summary>
         public class Response
         {
             public byte[] Content;
